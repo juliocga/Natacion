@@ -78,6 +78,27 @@ public class Pruebas extends Deportista {
         }
     }
     
+    public void ver_datos(){
+         System.out.println("Datos del deportista.");
+         System.out.println("Nombre: "+nombre);
+         System.out.println("Documento: "+documento);
+         System.out.println("Rama: "+rama);
+         System.out.println("Fecha de nacimiento: "+fecha);
+         System.out.println("Edad: "+edad);
+         if(edad>5 && edad<11){
+             System.out.println("Categoria: InfantilA");
+         }
+         if(edad>10 && edad<18){
+             System.out.println("Categoria: InfantilB");
+         }
+         if(edad>17 && edad<26){
+             System.out.println("Categoria: Juvenil");
+         }
+         if(edad>25){
+             System.out.println("Categoria: Senior");
+         }
+    }
+    
     public void eliminar_prueba(){
         int menu=6;
          Scanner lector = new Scanner (System.in);
@@ -102,7 +123,7 @@ public class Pruebas extends Deportista {
                     mariposa=0;
                      break;
                 case 3:
-                    System.out.println("El deportista "+nombre+" esta inscrito al estilo pecho.");
+                    System.out.println("El deportista "+nombre+" esta eliminado al estilo pecho.");
                     pecho=0;
                     break;
                 case 4:

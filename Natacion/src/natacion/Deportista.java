@@ -16,7 +16,8 @@ public class Deportista {
     protected int documento;
     protected  String rama;
     protected String fecha;
-
+    protected int edad;
+   
     public int getDocumento() {
         return documento;
     }
@@ -37,13 +38,15 @@ public class Deportista {
         rama=lector.next();
         lector.nextLine();
         System.out.println("Ingrese la fecha de nacimiento:");
-        fecha=lector.next();
+        fecha=lector.nextLine();
+        System.out.println("Ingrese la edad:");
+        edad=lector.nextInt();
     } 
     
     public void actualizar(){
         int menu=9;
         Scanner lector = new Scanner (System.in);
-        while(menu!=5){
+        while(menu!=6){
             menu=9;
             do{
                System.out.println("Ingrese el numero del parametro a actualizar:");
@@ -51,9 +54,10 @@ public class Deportista {
                System.out.println("2.Documento de identidad");
                System.out.println("3.Rama");
                System.out.println("4.Fecha de nacimiento");
-               System.out.println("5.Salir");
+               System.out.println("5.Edad");
+               System.out.println("6.Salir");
                menu=lector.nextInt();
-            }while(menu>5);
+            }while(menu>6);
             switch(menu){
                 case 1:
                     lector.nextLine();    
@@ -74,6 +78,11 @@ public class Deportista {
                         System.out.println("Ingrese la fecha de nacimiento:");
                         fecha=lector.nextLine();
                         break;
+                case 5:
+                        lector.nextLine(); 
+                        System.out.println("Ingrese la edad:");
+                        edad=lector.nextInt();
+                        break;
                 default:
                     break;
             }
@@ -88,6 +97,6 @@ public class Deportista {
         fecha="";
     }
     
-    
-    
+        
+
 }

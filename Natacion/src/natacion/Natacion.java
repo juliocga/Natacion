@@ -17,7 +17,7 @@ public class Natacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int i,menu=5,menu2=7,menu3=7,num_deportistas=0,documento=0,pos_depor=30;
+        int i,menu=5,menu2=7,menu3=7,num_deportistas=0,documento=0,pos_depor=30,salir=0;
         Scanner lector = new Scanner (System.in);
         Pruebas nadadores[] = new Pruebas[20];
         for (i=0;i<20;i++){
@@ -38,7 +38,8 @@ public class Natacion {
           switch(menu){
               case 1: System.out.println("Se permiten maximo 20 deportistas.");
                       System.out.println("Deportistas inscritos: "+num_deportistas);
-                      nadadores[0].load_deportista();
+                      nadadores[num_deportistas].load_deportista();
+                      num_deportistas++;
                       break;
               
                case 2: System.out.println("Ingrese el documento del deportista (sin caracteres).");
@@ -52,31 +53,45 @@ public class Natacion {
                       if(pos_depor!=30){
                          
                          System.out.println("El deportista esta en la base de datos.");
-                          while(menu2!=5){
+                          while(menu2!=6 && salir==0){
                                 menu2=7;
                                 do{
                                    System.out.println("---Ingrese la operacion a realizar:");
-                                   System.out.println("1.Actualizar deportista");
-                                   System.out.println("2.Eliminar deportista");
-                                   System.out.println("3.Inscribir nadador a una prueba");
-                                   System.out.println("4.Eliminar nadador de una prueba");
-                                   System.out.println("5.Salir");
+                                   System.out.println("1.Ver datos del deportista");
+                                   System.out.println("2.Actualizar deportista");
+                                   System.out.println("3.Eliminar deportista");
+                                   System.out.println("4.Inscribir nadador a una prueba");
+                                   System.out.println("5.Eliminar nadador de una prueba");
+                                   System.out.println("6.Salir");
                                    menu2=lector.nextInt();
-                                }while(menu2>5);
+                                }while(menu2>6);
                                 switch (menu2){
-                                    case 1: nadadores[pos_depor].actualizar();
+                                    case 1: nadadores[pos_depor].ver_datos();
                                         break;
-                                    case 2: nadadores[pos_depor].eliminar();
+                                    case 2: nadadores[pos_depor].actualizar();
                                         break;
-                                    case 3: nadadores[pos_depor].prueba();
+                                    case 3: nadadores[pos_depor].eliminar();
+                                            for(i=pos_depor;i<19;i++){
+                                                nadadores[i]=nadadores[i+1];
+                                                if(i==18 && num_deportistas==20){
+                                                   nadadores[19].eliminar(); 
+                                                }
+                                            }
+                                            num_deportistas--;
+                                            salir=1;
                                         break;
-                                    case 4: nadadores[pos_depor].eliminar_prueba();
+                                    case 4: nadadores[pos_depor].prueba();
+                                        break;
+                                    case 5: nadadores[pos_depor].eliminar_prueba();
                                         break;
                                     default:
                                         break;
                                 }
-                                pos_depor=30;
+                                
                           }
+                          salir=0;
+                          pos_depor=30;
+                          menu2=7;
                       }else{
                          System.out.println("El deportista no esta en la base de datos.");
                       }
@@ -130,6 +145,7 @@ public class Natacion {
                                             break;
                                 }
                     }
+                    menu3=7;
                     
                default:
                         break;
